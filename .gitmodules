@@ -1,0 +1,9 @@
+[submodule "picoCTF"]
+	path = picoCTF
+	url = git@github.com:oliverpearce/picoCTF.git
+[submodule "file-integrity-monitor"]
+	path = file-integrity-monitor
+	url = git@github.com:oliverpearce/file-integrity-monitor.git
+[submodule "bandit"]
+	path = bandit
+	url = git@github.com:oliverpearce/bandit.git
