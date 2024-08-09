@@ -1,5 +1,7 @@
 # medjed
 
+<img src="https://64.media.tumblr.com/10d3418aa31dcdc6ea52efcd85bd3f65/tumblr_ostusm8BJf1snj2byo3_250.png" width="50" height="40">
+
 - - -
 
 <!--- details anchor -->
@@ -21,6 +23,3 @@ made by [Oliver Pearce](https://oliverjpearce.com/)
 This project is licensed under the [MIT license](LICENSE).
 
 [![MIT License](https://img.shields.io/badge/license-MIT_License-blue)](https://opensource.org/licenses/MIT)
-—
-
-<img src="https://64.media.tumblr.com/10d3418aa31dcdc6ea52efcd85bd3f65/tumblr_ostusm8BJf1snj2byo3_250.png" width="50" height="40">
