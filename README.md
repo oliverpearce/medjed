@@ -13,7 +13,7 @@ made by [Oliver Pearce](https://oliverjpearce.com/)
 
 - - - 
 
-![tryhackme stats](https://raw.githubusercontent.com/silvered>/<silvered>/master/assets/thm_profile.png)
+![tryhackme stats](https://raw.githubusercontent.com/oliverpearce>/<oliverpearce>/main/assets/silvered.png)
 
 - - -
 
