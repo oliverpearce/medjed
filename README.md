@@ -11,6 +11,10 @@ created 7.31.24, with all my notes and projects (mostly) compiled.
 
 made by [Oliver Pearce](https://oliverjpearce.com/)
 
+- - - 
+
+![tryhackme stats](https://raw.githubusercontent.com/silvered>/<silvered>/master/assets/thm_profile.png)
+
 - - -
 
 ### Licensing

@@ -1,0 +1,16 @@
+name: THM Update Badge
+
+on:
+  schedule:
+    # Runs every 24 hours!
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+jobs:
+  thm-badge-update:
+    name: Update tryhackme badge with the latest tryhackme static image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          username: "silvered"
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
