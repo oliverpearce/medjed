@@ -1,17 +1,35 @@
-name: THM Update Badge
+name: Update TryHackMe Badge
 
 on:
   schedule:
-    # Runs every 24 hours!
-    - cron: '0 0 * * *'
-  workflow_dispatch:
+    - cron: "0 0 * * *" # Runs daily at midnight UTC
+  workflow_dispatch: # manual triggering
+
 jobs:
-  thm-badge-update:
-    name: Update tryhackme badge with the latest tryhackme static image
+  update-badge:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: p4p1/tryhackme-badge-workflow@main
-        with:
-          username: "silvered"
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Fetch Current Badge
+        id: fetch-badge
+        run: |
+          badge_url="https://tryhackme-badges.s3.amazonaws.com/silvered.png"
+          echo "badge_url=$badge_url" >> $GITHUB_ENV
+
+      - name: Update README.md
+        id: update-readme
+        run: |
+          badge_url="${{ env.badge_url }}"
+          # Use sed to update the badge URL in README.md
+          sed -i 's#\!\[TryHackMe Badge\](.*)#![TryHackMe Badge]('"$badge_url"')#' README.md
+          
+          # Check if the README.md file was modified
+          if git diff --quiet README.md; then
+            echo "README not changed"
+            echo "updated=false" >> $GITHUB_ENV
+          else
+            echo "README updated"
+            echo "updated=true

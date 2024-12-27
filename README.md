@@ -13,7 +13,7 @@ made by [Oliver Pearce](https://oliverjpearce.com/)
 
 - - - 
 
-![tryhackme stats](https://raw.githubusercontent.com/oliverpearce>/<oliverpearce>/main/assets/silvered.png)
+<img src="https://tryhackme-badges.s3.amazonaws.com/silvered.png" alt="THM badge" />
 
 - - -
 
