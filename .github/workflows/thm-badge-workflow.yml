@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Refresh Badge
         id: refresh-badge
@@ -26,3 +28,17 @@ jobs:
           git add README.md
           git commit -m "Weekly update of TryHackMe badge [skip ci]" || echo "No changes to commit"
           git push
+
+  update-submodules:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update modules
+        id: update-modules
+        run: |
+          git submodule foreach git pull origin main
