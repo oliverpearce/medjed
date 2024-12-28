@@ -1,4 +1,4 @@
-name: Update TryHackMe Badge
+name: Weekly Maintenance
 
 on:
   schedule:
@@ -27,7 +27,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
           git commit -m "Weekly update of TryHackMe badge [skip ci]" || echo "No changes to commit"
-          git push
+          git push origin main
 
   update-submodules:
     runs-on: ubuntu-latest
@@ -38,7 +38,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update modules
-        id: update-modules
+      - name: Update submodules
         run: |
           git submodule foreach git pull origin main
