@@ -43,7 +43,7 @@ jobs:
 
       - name: Update Submodules
         run: |
-          git submodule update --recursive --remote
+          git submodule foreach git pull origin main
           
       - name: Commit Submodule Changes
         id: commit-submodules
