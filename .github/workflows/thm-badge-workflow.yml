@@ -20,15 +20,6 @@ jobs:
         run: |
           curl -s "https://tryhackme-badges.s3.amazonaws.com/silvered.png?update=1"
 
-      - name: Update README.md
-        id: update-readme
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "Weekly update of TryHackMe badge [skip ci]" || echo "No changes to commit"
-          git push origin main
-
   update-submodules:
     runs-on: ubuntu-latest
 
@@ -38,6 +29,15 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update submodules
+      - name: Update Submodules
         run: |
           git submodule foreach git pull origin main
+
+      - name: Commit Changes
+        id: commit-changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Weekly maintenance [skip ci]" || echo "No changes to commit"
+          git push origin main
