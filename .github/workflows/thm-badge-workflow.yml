@@ -2,8 +2,8 @@ name: Update TryHackMe Badge
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs daily at midnight UTC
-  workflow_dispatch: # manual triggering
+    - cron: "0 0 * * 0" # Runs weekly at midnight UTC on Sunday
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   update-badge:
@@ -17,3 +17,12 @@ jobs:
         id: refresh-badge
         run: |
           curl -s "https://tryhackme-badges.s3.amazonaws.com/silvered.png?update=1"
+
+      - name: Update README.md
+        id: update-readme
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Weekly update of TryHackMe badge [skip ci]" || echo "No changes to commit"
+          git push
