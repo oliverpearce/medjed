@@ -20,7 +20,7 @@ jobs:
         run: |
           curl -s "https://tryhackme-badges.s3.amazonaws.com/silvered.png?update=1" -o silvered.png
           # Ensure that the badge is updated in the README.md
-          sed -i 's#https://tryhackme-badges.s3.amazonaws.com/silvered.png#https://raw.githubusercontent.com/${{ github.repository }}/main/silvered.png#' README.md
+          sed -i 's#https://tryhackme-badges.s3.amazonaws.com/silvered.png?update=1#https://raw.githubusercontent.com/${{ github.repository }}/main/silvered.png#' README.md
 
       - name: Commit Badge
         id: commit-badge
@@ -41,13 +41,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: 'true' 
 
-      - name: Configure Git Pull Behavior (Merge)
-        run: |
-          git config --global pull.rebase false 
-
       - name: Update Submodules
         run: |
-          git submodule foreach 'git pull origin main'
+          git submodule foreach git pull origin main
 
       - name: Commit Submodule 
         id: commit-submodules
