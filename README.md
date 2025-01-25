@@ -13,7 +13,7 @@ made by [Oliver Pearce](https://oliverjpearce.com/)
 
 - - - 
 
-<img src="https://raw.githubusercontent.com/oliverpearce/medjed/main/silvered.png" alt="THM badge" />
+<img src="./silvered.png" alt="THM badge" />
 
 - - -
 
