@@ -1,9 +1,9 @@
-name: Weekly Maintenance
+name: Weekly Maintanance !!
 
 on:
   schedule:
-    - cron: "0 0 * * 0" # Runs weekly at midnight UTC on Sunday
-  workflow_dispatch: # Allows manual triggering
+    - cron: "0 0 * * 0" # Runs weekly on Sunday midnight 
+  workflow_dispatch: # Allows manual triggering c:
 
 jobs:
   update-badge:
@@ -12,21 +12,34 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Refresh Badge
-        id: refresh-badge
+      - name: Delete Existing Badge
         run: |
-          curl -s "https://tryhackme-badges.s3.amazonaws.com/silvered.png?update=1" -o silvered.png
-          # Ensure that the badge is updated in the README.md
-          sed -i 's#https://tryhackme-badges.s3.amazonaws.com/silvered.png?update=1#https://raw.githubusercontent.com/${{ github.repository }}/main/silvered.png#' README.md
+          rm -f silvered.png
 
-      - name: Commit Badge
-        id: commit-badge
+      - name: Fetch New Badge
+        run: |
+          THM_USERNAME="silvered"
+          
+          # Fetch a new badge w/ update query
+          curl -L "https://tryhackme-badges.s3.amazonaws.com/${THM_USERNAME}.png?update=1" -o silvered.png
+
+      - name: Validate Badge Update
+        run: |
+          if [ ! -s silvered.png ]; then
+            echo "Badge file is missing or empty. Exiting workflow."
+            exit 1
+          fi
+
+      - name: Update README
+        run: |
+          sed -i 's|<img src=".*/silvered.png"|<img src="./silvered.png"|' README.md
+
+      - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
           git add README.md silvered.png
           git commit -m "Update TryHackMe badge [skip ci]" || echo "No changes to commit"
           git push origin main
@@ -50,6 +63,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
+          git pull
           git commit -m "Weekly submodule update [skip ci]" || echo "No changes to commit"
           git push origin main
