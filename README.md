@@ -5,8 +5,6 @@
 
 basically, my cybersecurity learning journey!
 
-to update submodules, run `git submodule foreach git pull origin main`
-
 created 7.31.24, with all my notes and projects (mostly) compiled.
 
 made by [Oliver Pearce](https://oliverjpearce.com/)
