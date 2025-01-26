@@ -58,6 +58,11 @@ jobs:
         run: |
           git submodule foreach 'git config pull.rebase false && git pull origin main'
 
+      - name: Pull and Fetch Remote Changes
+        run: |
+          git pull origin main
+          git fetch
+
       - name: Commit Submodule 
         id: commit-submodules
         run: |
